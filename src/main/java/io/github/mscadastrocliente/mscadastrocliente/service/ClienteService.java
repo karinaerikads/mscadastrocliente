@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ClienteService {
@@ -42,6 +44,10 @@ public class ClienteService {
         } catch (Exception e) {
             throw new DatabaseOperationException("Falha ao salvar o cliente.", e);
         }
+    }
+
+    public List<Cliente> listarTodosClientesOrdenadosPorNome() {
+        return clienteRepository.findAllClientesOrdenadosPorNome();
     }
 
 }

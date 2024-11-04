@@ -4,10 +4,10 @@ import io.github.mscadastrocliente.mscadastrocliente.domain.Cliente;
 import io.github.mscadastrocliente.mscadastrocliente.service.ClienteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/clientes")
@@ -21,4 +21,9 @@ public class ClienteController {
         return "Cliente e Endereço salvos com sucesso!";
     }
 
+    @GetMapping
+    public ResponseEntity<List<Cliente>> listarClientesOrdenadosPorNome() {
+        List<Cliente> clientes = clienteService.listarTodosClientesOrdenadosPorNome();
+        return ResponseEntity.ok(clientes);
+    }
 }
