@@ -1,3 +1,15 @@
 spring:
   application:
     name: mscadastrocliente
+
+datasource:
+  url: jdbc:h2:mem:cadastroclienteDB
+  driverClassName: org.h2.Driver
+  username: admin
+  password: password
+h2:
+  console:
+    enabled: true
+jpa:
+  hibernate:
+    ddl-auto: update
