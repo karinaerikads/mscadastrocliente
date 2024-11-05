@@ -17,19 +17,19 @@ public class ClienteService {
     private final ClienteRepository clienteRepository;
 
     @Transactional
-    public void salvarClienteComEndereco(Cliente cliente){
-        Long enderecoId = salvarEndereco(cliente.getEndereco());
-        salvarCliente(cliente, enderecoId);
+    public void salvarClienteComEndereco(Cliente cliente, String criadoPor){
+        salvarEndereco(cliente.getEndereco());
+        salvarCliente(cliente, buscarEnderecoId(cliente.getEndereco()), criadoPor);
     }
 
-    private Long salvarEndereco(Endereco endereco) {
+    private void salvarEndereco(Endereco endereco) {
         try {
             clienteRepository.salvarEndereco(endereco);
-            return buscarEnderecoId(endereco);
         } catch (Exception e) {
             throw new DatabaseOperationException("Falha ao salvar o endereço.", e);
         }
     }
+
     private Long buscarEnderecoId(Endereco endereco) {
         Long enderecoId = clienteRepository.findEnderecoId(endereco);
         if (enderecoId == null) {
@@ -38,9 +38,9 @@ public class ClienteService {
         return enderecoId;
     }
 
-    private void salvarCliente(Cliente cliente, Long enderecoId) {
+    private void salvarCliente(Cliente cliente, Long enderecoId, String criadoPor) {
         try {
-            clienteRepository.salvarCliente(cliente, enderecoId);
+            clienteRepository.salvarCliente(cliente, enderecoId, criadoPor);
         } catch (Exception e) {
             throw new DatabaseOperationException("Falha ao salvar o cliente.", e);
         }

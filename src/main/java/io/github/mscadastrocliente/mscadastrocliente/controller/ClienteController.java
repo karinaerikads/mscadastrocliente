@@ -3,8 +3,8 @@ package io.github.mscadastrocliente.mscadastrocliente.controller;
 import io.github.mscadastrocliente.mscadastrocliente.domain.Cliente;
 import io.github.mscadastrocliente.mscadastrocliente.service.ClienteService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +17,8 @@ public class ClienteController {
 
     @PostMapping
     public String salvarCliente(@RequestBody Cliente cliente) {
-        clienteService.salvarClienteComEndereco(cliente);
+        String criadoPor = SecurityContextHolder.getContext().getAuthentication().getName();
+        clienteService.salvarClienteComEndereco(cliente, criadoPor);
         return "Cliente e Endereço salvos com sucesso!";
     }
 
