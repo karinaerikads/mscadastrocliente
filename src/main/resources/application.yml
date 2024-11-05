@@ -10,6 +10,14 @@ datasource:
 h2:
   console:
     enabled: true
+sql:
+  init:
+    mode: always
 jpa:
   hibernate:
     ddl-auto: update
+
+api:
+  security:
+    token:
+      secret: ${JWT_SECRET:my-secret-key}
