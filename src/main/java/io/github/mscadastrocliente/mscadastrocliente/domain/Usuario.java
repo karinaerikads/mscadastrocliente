@@ -16,16 +16,12 @@ import java.util.List;
 public class Usuario implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Long id;
 
-    @Column
     private String login;
 
-    @Column
     private String password;
 
-    @Column
     private UserRole role;
 
     public Usuario(String login, String password, UserRole role){
