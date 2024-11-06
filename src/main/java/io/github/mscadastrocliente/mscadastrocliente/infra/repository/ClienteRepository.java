@@ -25,7 +25,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     void salvarEndereco(@Param("endereco") Endereco endereco);
 
     @Query(value = "SELECT id FROM endereco WHERE rua = :#{#endereco.rua} AND cidade = :#{#endereco.cidade} AND estado = :#{#endereco.estado} ORDER BY id DESC LIMIT 1", nativeQuery = true)
-    Long findEnderecoId(@Param("endereco") Endereco endereco);
+    Long buscarEnderecoId(@Param("endereco") Endereco endereco);
 
     @Query(value = "SELECT * FROM cliente ORDER BY LOWER(nome) ASC", nativeQuery = true)
     List<Cliente> findAllClientesOrdenadosPorNome();

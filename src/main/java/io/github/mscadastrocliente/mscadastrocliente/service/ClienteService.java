@@ -41,7 +41,7 @@ public class ClienteService {
     }
 
     private Long buscarEnderecoId(Endereco endereco) {
-        Long enderecoId = clienteRepository.findEnderecoId(endereco);
+        Long enderecoId = clienteRepository.buscarEnderecoId(endereco);
         if (enderecoId == null) {
             throw new EnderecoNotFoundException("Endereço não encontrado após a inserção.");
         }
