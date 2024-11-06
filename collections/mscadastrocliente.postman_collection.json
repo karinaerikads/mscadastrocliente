@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "397faec1-6dc0-465c-8d59-b745d5ec88e9",
+		"_postman_id": "864d899e-9a79-4086-bd10-ddb74af1069a",
 		"name": "mscadastrocliente",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "5052906"
@@ -14,7 +14,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJtc2NhZGFzdHJvY2xpZW50ZSIsInN1YiI6ImthcmluYWVyaWthZHMzIiwiZXhwIjoxNzMwODU4Njk4fQ.usH4YkHiZZABKHx73URjl91hj_MK93B21ydDNTOknkU",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJtc2NhZGFzdHJvY2xpZW50ZSIsInN1YiI6ImthcmluYWVyaWthIiwiZXhwIjoxNzMwOTI0MDM1fQ.7351DGDk4dRq7tF1q8YGZobByMP2xz72UEtvAaWZuwo",
 							"type": "string"
 						}
 					]
@@ -23,7 +23,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "    {\r\n        \"nome\": \"Bernado\",\r\n        \"email\": \"fernando.lima@example.com\",\r\n        \"endereco\": {\r\n            \"rua\": \"Rua da Paz\",\r\n            \"cidade\": \"Salvador\",\r\n            \"estado\": \"BA\"\r\n        }\r\n    }",
+					"raw": "    {\r\n        \"nome\": \"abel\",\r\n        \"email\": \"abel.santos@example.com\",\r\n        \"endereco\": {\r\n            \"rua\": \"Estrada de Ribamar\",\r\n            \"cidade\": \"Maranhao\",\r\n            \"estado\": \"MA\"\r\n        }\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -51,7 +51,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJtc2NhZGFzdHJvY2xpZW50ZSIsInN1YiI6ImthcmluYWVyaWthZHMzIiwiZXhwIjoxNzMwODU2MDkxfQ.AD7ACJpEuFYlF98oV23ixdx7zvaTD-yoPS1Cz8j0s-0",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJtc2NhZGFzdHJvY2xpZW50ZSIsInN1YiI6ImthcmluYWVyaWthIiwiZXhwIjoxNzMwOTI0MDM1fQ.7351DGDk4dRq7tF1q8YGZobByMP2xz72UEtvAaWZuwo",
 							"type": "string"
 						}
 					]
@@ -78,7 +78,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"login\": \"karinaerikads3\",\r\n    \"password\": \"12345\",\r\n    \"role\": \"ADMIN\"\r\n}",
+					"raw": "{\r\n    \"login\": \"karinaerika\",\r\n    \"password\": \"12345\",\r\n    \"role\": \"USER\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -106,7 +106,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"login\": \"karinaerikads3\",\r\n    \"password\": \"12345\"\r\n}",
+					"raw": "{\r\n    \"login\": \"karinaerika\",\r\n    \"password\": \"12345\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -128,37 +128,30 @@
 			"response": []
 		},
 		{
-			"name": "Atualizar cliente",
+			"name": "Deletar cliente",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJtc2NhZGFzdHJvY2xpZW50ZSIsInN1YiI6ImthcmluYWVyaWthZHMzIiwiZXhwIjoxNzMwODU4Mzc5fQ.xQeOCI8r3kMSWP5R_OJnYTXXMwU6JGBxizgylSpTLnE",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJtc2NhZGFzdHJvY2xpZW50ZSIsInN1YiI6ImthcmluYWVyaWthZHMzIiwiZXhwIjoxNzMwOTEzMDUxfQ.KK2O0G7PvPVN-wqZHH8JmCcIul0L5H7rev8NcYi-5xM",
 							"type": "string"
 						}
 					]
 				},
-				"method": "PUT",
+				"method": "DELETE",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"id\": 1,\r\n    \"nome\": \"Bernado\",\r\n    \"email\": \"bernado.lima@example.com\",\r\n    \"endereco\": {\r\n        \"id\": 1,\r\n        \"rua\": \"Rua da Paz\",\r\n        \"cidade\": \"Salvador\",\r\n        \"estado\": \"BA\"\r\n    }\r\n}\r\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "localhost:8080/clientes",
+					"raw": "http://localhost:8080/clientes/1",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"clientes"
+						"clientes",
+						"1"
 					]
 				}
 			},
