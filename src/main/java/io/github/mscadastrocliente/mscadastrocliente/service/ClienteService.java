@@ -7,6 +7,7 @@ import io.github.mscadastrocliente.mscadastrocliente.exception.DatabaseOperation
 import io.github.mscadastrocliente.mscadastrocliente.exception.EnderecoNotFoundException;
 import io.github.mscadastrocliente.mscadastrocliente.infra.repository.ClienteRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,9 +19,14 @@ public class ClienteService {
     private final ClienteRepository clienteRepository;
 
     @Transactional
-    public void salvarClienteComEndereco(Cliente cliente, String criadoPor){
+    public void salvarClienteComEndereco(Cliente cliente){
+        String criadoPor = SecurityContextHolder.getContext().getAuthentication().getName();
+        cliente.setCriadoPor(criadoPor);
+
         salvarEndereco(cliente.getEndereco());
-        salvarCliente(cliente, buscarEnderecoId(cliente.getEndereco()), criadoPor);
+
+        Long enderecoId = buscarEnderecoId(cliente.getEndereco());
+        salvarCliente(cliente, enderecoId);
     }
 
     private void salvarEndereco(Endereco endereco) {
@@ -39,9 +45,9 @@ public class ClienteService {
         return enderecoId;
     }
 
-    private void salvarCliente(Cliente cliente, Long enderecoId, String criadoPor) {
+    private void salvarCliente(Cliente cliente, Long enderecoId) {
         try {
-            clienteRepository.salvarCliente(cliente, enderecoId, criadoPor);
+            clienteRepository.salvarCliente(cliente, enderecoId);
         } catch (Exception e) {
             throw new DatabaseOperationException("Falha ao salvar o cliente.", e);
         }
