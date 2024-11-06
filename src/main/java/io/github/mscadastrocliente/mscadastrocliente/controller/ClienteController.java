@@ -27,4 +27,10 @@ public class ClienteController {
         List<Cliente> clientes = clienteService.listarTodosClientesOrdenadosPorNome();
         return ResponseEntity.ok(clientes);
     }
+
+    @GetMapping("/por-estado")
+    public ResponseEntity<List<Cliente>> buscarClientesPorEstado(@RequestParam("estado") String estado) {
+        List<Cliente> clientes = clienteService.buscarClientesPorEstado(estado);
+        return ResponseEntity.ok(clientes);
+    }
 }

@@ -30,4 +30,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     @Query(value = "SELECT * FROM cliente ORDER BY LOWER(nome) ASC", nativeQuery = true)
     List<Cliente> findAllClientesOrdenadosPorNome();
 
+    @Query(value = "SELECT * FROM cliente c JOIN endereco e ON c.endereco_id = e.id WHERE estado = :estado", nativeQuery = true)
+    List<Cliente> buscarClientePorEstado(@Param("estado") String estado);
+
 }

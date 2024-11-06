@@ -50,4 +50,8 @@ public class ClienteService {
         return clienteRepository.findAllClientesOrdenadosPorNome();
     }
 
+    public List<Cliente> buscarClientesPorEstado(String estado) {
+        return clienteRepository.buscarClientePorEstado(estado);
+    }
+
 }
