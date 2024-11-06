@@ -27,4 +27,10 @@ public class ClienteController {
         List<Cliente> clientes = clienteService.listarTodosClientesOrdenadosPorNome();
         return ResponseEntity.ok(clientes);
     }
+
+    @DeleteMapping("{idCliente}")
+    public String deletarCliente(@PathVariable Long idCliente){
+        clienteService.deletarCliente(idCliente);
+        return "Cliente deletado com sucesso";
+    }
 }
