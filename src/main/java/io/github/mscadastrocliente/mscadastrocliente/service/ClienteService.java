@@ -53,11 +53,11 @@ public class ClienteService {
 
     public void deletarCliente(Long idCliente){
         Cliente cliente = buscarClienteComEndereco(idCliente);
-//        deletarClienteComEndereco(cliente);
+        deletarClienteComEndereco(cliente);
     }
 
     private Cliente buscarClienteComEndereco(Long idCliente){
-        Cliente cliente = clienteRepository.buscarClienteComEndereco(idCliente);
+        Cliente cliente = clienteRepository.buscarCliente(idCliente);
         if (cliente == null)
             throw new ClienteNotFoundException("Cliente não encontrado");
         if (cliente.getEndereco() == null)
@@ -67,12 +67,11 @@ public class ClienteService {
     }
 
     private void deletarClienteComEndereco(Cliente cliente){
-//        try {
-//            clienteRepository.deletarCliente(cliente.getId());
-//            clienteRepository.deletarEndereco(cliente.getEndereco().getId());
-//
-//        } catch (Exception e){
-//            throw new DatabaseOperationException("Falha ao deletar cliente.")
-//        }
+        try {
+            clienteRepository.excluirCliente(cliente.getId());
+            clienteRepository.excluirEndereco(cliente.getEndereco().getId());
+        } catch (Exception e){
+            throw new DatabaseOperationException("Falha ao deletar cliente.", e);
+        }
     }
 }

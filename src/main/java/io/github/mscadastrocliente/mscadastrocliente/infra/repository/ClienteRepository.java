@@ -30,21 +30,17 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     @Query(value = "SELECT * FROM cliente ORDER BY LOWER(nome) ASC", nativeQuery = true)
     List<Cliente> findAllClientesOrdenadosPorNome();
 
-    @Query(value = "SELECT c.id AS clienteId, c.nome AS nome, c.email AS email, c.criado_por AS criadoPor, " +
-            "e.id AS enderecoId, e.rua AS rua, e.cidade AS cidade, e.estado AS estado " +
-            "FROM cliente c " +
-            "JOIN endereco e ON c.endereco_id = e.id " +
-            "WHERE c.id = :clienteId", nativeQuery = true)
-    Cliente buscarClienteComEndereco(Long clienteId);
+    @Query(value = "SELECT *FROM cliente WHERE id = :clienteId", nativeQuery = true)
+    Cliente buscarCliente(@Param("clienteId") Long clienteId);
 
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM cliente WHERE id = :clienteId", nativeQuery = true)
-    int excluirCliente(Long clienteId);
+    int excluirCliente(@Param("clienteId") Long clienteId);
 
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM endereco WHERE id = :enderecoId", nativeQuery = true)
-    int excluirEndereco(Long enderecoId);
+    int excluirEndereco(@Param("enderecoId") Long enderecoId);
 
 }
