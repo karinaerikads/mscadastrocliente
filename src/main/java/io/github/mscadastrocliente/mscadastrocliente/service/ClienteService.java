@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -26,6 +27,8 @@ public class ClienteService {
         salvarEndereco(cliente.getEndereco());
 
         Long enderecoId = buscarEnderecoId(cliente.getEndereco());
+        cliente.setDataCadastro(LocalDateTime.now());
+
         salvarCliente(cliente, enderecoId);
     }
 

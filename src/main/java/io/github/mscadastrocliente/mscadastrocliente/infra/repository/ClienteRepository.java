@@ -16,7 +16,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "INSERT INTO cliente (nome, email, endereco_id, criado_por) VALUES (:#{#cliente.nome}, :#{#cliente.email}, :enderecoId, :#{#cliente.criadoPor})", nativeQuery = true)
+    @Query(value = "INSERT INTO cliente (nome, email, endereco_id, criado_por, data_cadastro) VALUES (:#{#cliente.nome}, :#{#cliente.email}, :enderecoId, :#{#cliente.criadoPor}, :#{#cliente.dataCadastro})", nativeQuery = true)
     void salvarCliente(@Param("cliente") Cliente cliente, @Param("enderecoId") Long enderecoId);
 
     @Transactional
