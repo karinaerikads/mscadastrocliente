@@ -18,4 +18,8 @@ public class Endereco {
     private String cidade;
 
     private String estado;
+
+    public Endereco(Long id) {
+        this.id = id;
+    }
 }

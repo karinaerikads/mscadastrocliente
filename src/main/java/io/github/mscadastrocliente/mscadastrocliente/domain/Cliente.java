@@ -25,6 +25,8 @@ public class Cliente {
 
     private String modificadoPor;
 
+    private LocalDateTime dataAlteracao;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "endereco_id", referencedColumnName = "id")
     private Endereco endereco;

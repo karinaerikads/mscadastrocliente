@@ -50,7 +50,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE cliente SET nome = :#{#cliente.nome}, email = :#{#cliente.email}, criado_por = :#{#cliente.criado_por}, modificado_por :#{#cliente.modificado_por} WHERE id = :#{#cliente.id}", nativeQuery = true)
+    @Query(value = "UPDATE cliente SET nome = :#{#cliente.nome}, email = :#{#cliente.email}, modificado_por :#{#cliente.modificadoPor}, data_alteracao  :#{#cliente.dataAlteracao} WHERE id = :#{#cliente.id}", nativeQuery = true)
     void atualizarCliente(Cliente cliente);
 
 }

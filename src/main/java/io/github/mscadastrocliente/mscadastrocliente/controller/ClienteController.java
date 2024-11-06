@@ -1,6 +1,7 @@
 package io.github.mscadastrocliente.mscadastrocliente.controller;
 
 import io.github.mscadastrocliente.mscadastrocliente.domain.Cliente;
+import io.github.mscadastrocliente.mscadastrocliente.dto.ClienteDTO;
 import io.github.mscadastrocliente.mscadastrocliente.service.ClienteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -26,9 +27,9 @@ public class ClienteController {
         return ResponseEntity.ok(clientes);
     }
 
-    @PutMapping
-    String atualizar(@RequestBody Cliente cliente){
-        clienteService.atualizarClienteComEndereco(cliente);
+    @PutMapping("{id}")
+    String atualizar(@RequestBody ClienteDTO clienteDTO){
+        clienteService.atualizarClienteComEndereco(clienteDTO);
         return "Atualizado com sucesso!";
     }
 

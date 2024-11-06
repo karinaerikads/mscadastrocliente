@@ -2,6 +2,7 @@ package io.github.mscadastrocliente.mscadastrocliente.service;
 
 import io.github.mscadastrocliente.mscadastrocliente.domain.Cliente;
 import io.github.mscadastrocliente.mscadastrocliente.domain.Endereco;
+import io.github.mscadastrocliente.mscadastrocliente.dto.ClienteDTO;
 import io.github.mscadastrocliente.mscadastrocliente.exception.ClienteNotFoundException;
 import io.github.mscadastrocliente.mscadastrocliente.exception.DatabaseOperationException;
 import io.github.mscadastrocliente.mscadastrocliente.exception.EnderecoNotFoundException;
@@ -84,13 +85,14 @@ public class ClienteService {
         }
     }
     @Transactional
-    public void atualizarClienteComEndereco(Cliente cliente) {
-        String modificadoPor = SecurityContextHolder.getContext().getAuthentication().getName();
-        cliente.setModificadoPor(modificadoPor);
+    public void atualizarClienteComEndereco(ClienteDTO clienteDTO) {
+
+
+        Cliente cliente = montarObjetoCliente(clienteDTO);
 
         atualizarEndereco(cliente.getEndereco());
 
-        clienteRepository.atualizarCliente(cliente);
+        atualizarCliente(cliente);
     }
 
     private void atualizarEndereco(Endereco enderecoAtualizado){
@@ -100,6 +102,35 @@ public class ClienteService {
         } catch (Exception e){
             throw new DatabaseOperationException("Falha ao atualizar o endereco.", e);
         }
+    }
+
+    private void atualizarCliente(Cliente cliente){
+        try {
+            clienteRepository.atualizarCliente(cliente);
+        } catch (Exception e){
+            throw new DatabaseOperationException("Falha ao atualizar o cliente.", e);
+        }
+
+    }
+
+    private Cliente montarObjetoCliente(ClienteDTO clienteDTO){
+        Cliente clienteAtualizado = new Cliente();
+
+        clienteAtualizado.setId(clienteDTO.getClienteId());
+        clienteAtualizado.setNome(clienteDTO.getNome());
+        clienteAtualizado.setEmail(clienteDTO.getEmail());
+
+        clienteAtualizado.setEndereco(new Endereco(clienteDTO.getEnderecoId()));
+        clienteAtualizado.getEndereco().setRua(clienteDTO.getRua());
+        clienteAtualizado.getEndereco().setCidade(clienteDTO.getCidade());
+        clienteAtualizado.getEndereco().setEstado(clienteDTO.getEstado());
+
+        String modificadoPor = SecurityContextHolder.getContext().getAuthentication().getName();
+        clienteAtualizado.setModificadoPor(modificadoPor);
+
+        clienteAtualizado.setDataAlteracao(LocalDateTime.now());
+
+        return clienteAtualizado;
     }
 
 }
