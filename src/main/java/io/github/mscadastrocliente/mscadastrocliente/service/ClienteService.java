@@ -2,6 +2,7 @@ package io.github.mscadastrocliente.mscadastrocliente.service;
 
 import io.github.mscadastrocliente.mscadastrocliente.domain.Cliente;
 import io.github.mscadastrocliente.mscadastrocliente.domain.Endereco;
+import io.github.mscadastrocliente.mscadastrocliente.exception.ClienteNotFoundException;
 import io.github.mscadastrocliente.mscadastrocliente.exception.DatabaseOperationException;
 import io.github.mscadastrocliente.mscadastrocliente.exception.EnderecoNotFoundException;
 import io.github.mscadastrocliente.mscadastrocliente.infra.repository.ClienteRepository;
@@ -50,4 +51,28 @@ public class ClienteService {
         return clienteRepository.findAllClientesOrdenadosPorNome();
     }
 
+    public void deletarCliente(Long idCliente){
+        Cliente cliente = buscarClienteComEndereco(idCliente);
+//        deletarClienteComEndereco(cliente);
+    }
+
+    private Cliente buscarClienteComEndereco(Long idCliente){
+        Cliente cliente = clienteRepository.buscarClienteComEndereco(idCliente);
+        if (cliente == null)
+            throw new ClienteNotFoundException("Cliente não encontrado");
+        if (cliente.getEndereco() == null)
+            throw new EnderecoNotFoundException("Endereco do cliente não encontrado");
+
+        return cliente;
+    }
+
+    private void deletarClienteComEndereco(Cliente cliente){
+//        try {
+//            clienteRepository.deletarCliente(cliente.getId());
+//            clienteRepository.deletarEndereco(cliente.getEndereco().getId());
+//
+//        } catch (Exception e){
+//            throw new DatabaseOperationException("Falha ao deletar cliente.")
+//        }
+    }
 }
