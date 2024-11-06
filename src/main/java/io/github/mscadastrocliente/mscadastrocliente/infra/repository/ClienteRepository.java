@@ -30,4 +30,14 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     @Query(value = "SELECT * FROM cliente ORDER BY LOWER(nome) ASC", nativeQuery = true)
     List<Cliente> findAllClientesOrdenadosPorNome();
 
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE endereco SET rua = :#{#endereco.rua}, cidade = :#{#endereco.cidade}, estado = :#{#endereco.estado} WHERE id = :#{#endereco.id}", nativeQuery = true)
+    void atualizarEndereco(Endereco endereco);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE cliente SET nome = :#{#cliente.nome}, email = :#{#cliente.email}, criado_por = :#{#cliente.criado_por}, modificado_por :#{#cliente.modificado_por} WHERE id = :#{#cliente.id}", nativeQuery = true)
+    void atualizarCliente(Cliente cliente);
+
 }

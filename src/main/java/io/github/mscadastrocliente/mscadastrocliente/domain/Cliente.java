@@ -18,6 +18,8 @@ public class Cliente {
 
     private String criadoPor;
 
+    private String modificadoPor;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "endereco_id", referencedColumnName = "id")
     private Endereco endereco;

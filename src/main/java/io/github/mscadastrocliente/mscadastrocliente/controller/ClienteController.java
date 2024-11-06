@@ -27,4 +27,10 @@ public class ClienteController {
         List<Cliente> clientes = clienteService.listarTodosClientesOrdenadosPorNome();
         return ResponseEntity.ok(clientes);
     }
+
+    @PutMapping
+    String atualizar(@RequestBody Cliente cliente){
+        clienteService.atualizarClienteComEndereco(cliente);
+        return "Atualizado com sucesso!";
+    }
 }
