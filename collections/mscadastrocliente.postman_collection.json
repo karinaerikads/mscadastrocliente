@@ -1,0 +1,168 @@
+{
+	"info": {
+		"_postman_id": "397faec1-6dc0-465c-8d59-b745d5ec88e9",
+		"name": "mscadastrocliente",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5052906"
+	},
+	"item": [
+		{
+			"name": "Salvar cliente",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJtc2NhZGFzdHJvY2xpZW50ZSIsInN1YiI6ImthcmluYWVyaWthZHMzIiwiZXhwIjoxNzMwODU4Njk4fQ.usH4YkHiZZABKHx73URjl91hj_MK93B21ydDNTOknkU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"nome\": \"Bernado\",\r\n        \"email\": \"fernando.lima@example.com\",\r\n        \"endereco\": {\r\n            \"rua\": \"Rua da Paz\",\r\n            \"cidade\": \"Salvador\",\r\n            \"estado\": \"BA\"\r\n        }\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/clientes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar clientes por ordem alfabética",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJtc2NhZGFzdHJvY2xpZW50ZSIsInN1YiI6ImthcmluYWVyaWthZHMzIiwiZXhwIjoxNzMwODU2MDkxfQ.AD7ACJpEuFYlF98oV23ixdx7zvaTD-yoPS1Cz8j0s-0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/clientes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastro de login de usuário",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"login\": \"karinaerikads3\",\r\n    \"password\": \"12345\",\r\n    \"role\": \"ADMIN\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/auth/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login usuário",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"login\": \"karinaerikads3\",\r\n    \"password\": \"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar cliente",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJtc2NhZGFzdHJvY2xpZW50ZSIsInN1YiI6ImthcmluYWVyaWthZHMzIiwiZXhwIjoxNzMwODU4Mzc5fQ.xQeOCI8r3kMSWP5R_OJnYTXXMwU6JGBxizgylSpTLnE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"nome\": \"Bernado\",\r\n    \"email\": \"bernado.lima@example.com\",\r\n    \"endereco\": {\r\n        \"id\": 1,\r\n        \"rua\": \"Rua da Paz\",\r\n        \"cidade\": \"Salvador\",\r\n        \"estado\": \"BA\"\r\n    }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/clientes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

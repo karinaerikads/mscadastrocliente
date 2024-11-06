@@ -16,8 +16,8 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "INSERT INTO cliente (nome, email, endereco_id, criado_por) VALUES (:#{#cliente.nome}, :#{#cliente.email}, :enderecoId, :criadoPor)", nativeQuery = true)
-    void salvarCliente(@Param("cliente") Cliente cliente, @Param("enderecoId") Long enderecoId, @Param("criadoPor") String criadoPor);
+    @Query(value = "INSERT INTO cliente (nome, email, endereco_id, criado_por, data_cadastro) VALUES (:#{#cliente.nome}, :#{#cliente.email}, :enderecoId, :#{#cliente.criadoPor}, :#{#cliente.dataCadastro})", nativeQuery = true)
+    void salvarCliente(@Param("cliente") Cliente cliente, @Param("enderecoId") Long enderecoId);
 
     @Transactional
     @Modifying
@@ -25,10 +25,23 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     void salvarEndereco(@Param("endereco") Endereco endereco);
 
     @Query(value = "SELECT id FROM endereco WHERE rua = :#{#endereco.rua} AND cidade = :#{#endereco.cidade} AND estado = :#{#endereco.estado} ORDER BY id DESC LIMIT 1", nativeQuery = true)
-    Long findEnderecoId(@Param("endereco") Endereco endereco);
+    Long buscarEnderecoId(@Param("endereco") Endereco endereco);
 
     @Query(value = "SELECT * FROM cliente ORDER BY LOWER(nome) ASC", nativeQuery = true)
     List<Cliente> findAllClientesOrdenadosPorNome();
+
+    @Query(value = "SELECT *FROM cliente WHERE id = :clienteId", nativeQuery = true)
+    Cliente buscarCliente(@Param("clienteId") Long clienteId);
+
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM cliente WHERE id = :clienteId", nativeQuery = true)
+    int excluirCliente(@Param("clienteId") Long clienteId);
+
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM endereco WHERE id = :enderecoId", nativeQuery = true)
+    int excluirEndereco(@Param("enderecoId") Long enderecoId);
 
     @Modifying
     @Transactional
