@@ -27,7 +27,7 @@ public class ClienteController {
     }
 
     @DeleteMapping("{idCliente}")
-    public String deletarCliente(@PathVariable Long idCliente){
+    public String deletar(@PathVariable Long idCliente){
         clienteService.deletarCliente(idCliente);
         return "Cliente deletado com sucesso";
     }
